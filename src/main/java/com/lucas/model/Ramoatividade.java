@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "ramo_Atividade")
+@Table(name = "ramo_atividade")
 public class Ramoatividade implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -21,7 +21,7 @@ public class Ramoatividade implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "descricao")
+	@Column(name = "descricao", nullable = false, length = 80)
 	private String descricao;
 	
 	
