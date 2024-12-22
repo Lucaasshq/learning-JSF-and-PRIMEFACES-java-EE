@@ -27,23 +27,24 @@ public class Empresa implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "nome_fantasia")
-	private String nomeFantasia;
+	@Column(name = "nome_fantasia", nullable = false, length = 80)
+	private String nomeFantasia; 
 	
-	@Column(name = "razao_social")
+	@Column(name = "razao_social", nullable = false, length = 120)
 	private String razaoSocial;
 	
-	@Column(name = "cnpj")
+	@Column(name = "cnpj", nullable = false, length = 18)
 	private String cnpj;
 	
 	@Column(name = "data_fundacao")
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	private Date dataFundacao;
 	
 	@ManyToOne
-	@JoinColumn(name = "ramo_atividade_id")
-	private Ramoatividade ramoAtividade;
+	@JoinColumn(name = "ramo_atividade_id", nullable = false)
+	private RamoAtividade ramoAtividade;
 	
+	@Column(nullable = false, length = 30)
 	@Enumerated(EnumType.STRING)
 	private TipoEmpresa tipo;
 	
@@ -91,11 +92,11 @@ public class Empresa implements Serializable{
 		this.dataFundacao = dataFundacao;
 	}
 
-	public Ramoatividade getRamoAtividade() {
+	public RamoAtividade getRamoAtividade() {
 		return ramoAtividade;
 	}
 
-	public void setRamoAtividade(Ramoatividade ramoAtividade) {
+	public void setRamoAtividade(RamoAtividade ramoAtividade) {
 		this.ramoAtividade = ramoAtividade;
 	}
 

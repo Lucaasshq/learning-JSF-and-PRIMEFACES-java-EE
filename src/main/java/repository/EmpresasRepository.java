@@ -3,20 +3,23 @@ package repository;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.management.Query;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import com.lucas.model.Empresa;
 
-public class Empresas implements Serializable {
+public class EmpresasRepository implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
 	
 	private EntityManager manager;
 	
-	public Empresas() {
+	public EmpresasRepository(EntityManager manager) {
+		this.manager = manager;
+	}
+	
+	public EmpresasRepository() {
 		
 	}
 	

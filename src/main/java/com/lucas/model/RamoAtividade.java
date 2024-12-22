@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "ramo_atividade")
-public class Ramoatividade implements Serializable{
+public class RamoAtividade implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -57,7 +57,7 @@ public class Ramoatividade implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Ramoatividade other = (Ramoatividade) obj;
+		RamoAtividade other = (RamoAtividade) obj;
 		return Objects.equals(id, other.id);
 	}
 
