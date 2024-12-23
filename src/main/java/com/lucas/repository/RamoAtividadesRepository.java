@@ -1,4 +1,4 @@
-package repository;
+package com.lucas.repository;
 
 import java.io.Serializable;
 import java.util.List;

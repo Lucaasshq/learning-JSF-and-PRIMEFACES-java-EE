@@ -1,4 +1,4 @@
-package repository;
+package com.lucas.repository;
 
 import java.util.Date;
 import java.util.List;
@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.xml.bind.PrintConversionEvent;
 
 import com.lucas.model.Empresa;
 import com.lucas.model.RamoAtividade;

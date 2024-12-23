@@ -1,4 +1,4 @@
-package repository;
+package com.lucas.repository;
 import com.lucas.model.*;
 
 import java.util.List;

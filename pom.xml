@@ -13,6 +13,14 @@
 	</properties>
 
 	<dependencies>
+	
+	<!-- https://mvnrepository.com/artifact/org.jboss.weld.servlet/weld-servlet-core -->
+		<dependency>
+    		<groupId>org.jboss.weld.servlet</groupId>
+    		<artifactId>weld-servlet-core</artifactId>
+    		<version>2.4.0.Final</version>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.glassfish/javax.faces -->
 		<dependency>
 			<groupId>org.glassfish</groupId>
