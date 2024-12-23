@@ -21,9 +21,6 @@
             <property name="javax.persistence.jdbc.user" value="postgres"/>
             <property name="javax.persistence.jdbc.password" value="13037400"/>
             
-            <!-- scripts do banco -->
-            <property name="javax.persistence.sql-load-script-source" value="Meta-INF/sql/dados-iniciais.sql"/>
-            
             <!-- Propriedades específicas do Hibernate -->
             <property name="javax.persistence.schema-generation.create-source" value="metadata"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>

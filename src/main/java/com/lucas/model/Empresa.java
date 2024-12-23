@@ -52,6 +52,15 @@ public class Empresa implements Serializable{
 	
 	
 
+
+	public TipoEmpresa getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(TipoEmpresa tipo) {
+		this.tipo = tipo;
+	}
+
 	public Long getId() {
 		return id;
 	}
