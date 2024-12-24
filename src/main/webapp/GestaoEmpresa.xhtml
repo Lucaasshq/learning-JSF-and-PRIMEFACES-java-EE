@@ -10,34 +10,56 @@
 	<h:outputStylesheet library="style" name="style.css" />
 </h:head>
 <h:body>
-
 	<header>
 		<h:graphicImage library="style" name="logo.png" />
 	</header>
+
 
 	<div id="conteudo">
 		<h:form>
 			<h:panelGrid columns="2">
 				<h:outputLabel value="Razão social:" for="razaoSocial" />
-				<h:inputText id="razaoSocial"/>
-				
+				<h:inputText id="razaoSocial" />
+
 				<h:outputLabel value="Nome fantasia:" for="nomeFantasia" />
-				<h:inputText id="nomeFantasia"/>
-				
-				<h:outputLabel value="Tipo empresa:" for="tipo"/>
+				<h:inputText id="nomeFantasia" />
+
+				<h:outputLabel value="Tipo empresa:" for="tipo" />
 				<h:selectOneMenu id="tipo">
 					<f:selectItem itemLabel="Selecione..." />
 					<f:selectItem itemLabel="MEI" itemValue="MEI" />
 					<f:selectItem itemLabel="LTDA" itemValue="LTDA" />
+					<f:selectItem itemLabel="EIRELI" itemValue="EIRELI" />
+					<f:selectItem itemLabel="SA" itemValue="SA" />
 				</h:selectOneMenu>
-				
-				<h:outputLabel/>
-				<h:commandButton value="Salvar"/>
+
+				<h:outputLabel />
+				<h:commandButton value="Salvar" />
 			</h:panelGrid>
+
+			<h:dataTable>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nome fantasia" />
+					</f:facet>
+
+					<h:outputText value="AlgaWorks Software" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Tipo empresa" />
+					</f:facet>
+
+					<h:outputText value="LTDA" />
+				</h:column>
+			</h:dataTable>
 		</h:form>
 	</div>
 
+
+
 	<footer> Curso online "JSF e primeFaces Essencial" </footer>
 
-	</h:body>
+</h:body>
 </html>

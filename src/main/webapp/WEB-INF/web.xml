@@ -6,6 +6,10 @@
 	<!-- Nome da aplicacao, exibido em ferramentas administrativas ou consoles de servidor -->
 	<display-name>curso-jsf-e-primefaces-essencial</display-name>
 	
+	<welcome-file-list>
+        <welcome-file>GestaoEmpresa.xhtml</welcome-file>
+    </welcome-file-list>
+	
 	<!-- Configuracao de parametros de contexto para o JSF -->
 	<context-param>
 		<!-- Define o estagio do projeto: Development para desenvolvimento ou Production para producao -->
