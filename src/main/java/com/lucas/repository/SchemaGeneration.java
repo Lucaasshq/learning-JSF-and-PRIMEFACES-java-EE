@@ -1,4 +1,5 @@
 package com.lucas.repository;
+
 import com.lucas.model.*;
 
 import java.util.List;
@@ -8,20 +9,19 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class SchemaGeneration {
-	
+
 	public static void main(String[] args) {
-		
+
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Curso-JSF");
-		
+
 		EntityManager em = emf.createEntityManager();
-		
+
 		List<Empresa> lista = em.createQuery("from Empresa", Empresa.class).getResultList();
-				
+
 		System.out.println(lista);
-		
+
 		em.close();
 		emf.close();
 	}
-	
 
 }

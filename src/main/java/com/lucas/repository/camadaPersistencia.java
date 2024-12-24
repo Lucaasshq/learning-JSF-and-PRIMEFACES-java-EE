@@ -12,28 +12,27 @@ import com.lucas.model.RamoAtividade;
 import com.lucas.model.TipoEmpresa;
 
 public class camadaPersistencia {
-	
+
 	public static void main(String[] args) {
-		
+
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Curso-JSF");
-		
+
 		EntityManager em = emf.createEntityManager();
-		
-		//Iniciando transacao 
+
+		// Iniciando transacao
 		em.getTransaction().begin();
-		
-		//Declarando os repositorios
+
+		// Declarando os repositorios
 		RamoAtividadesRepository ramoRepository = new RamoAtividadesRepository(em);
 		EmpresasRepository empresasRepository = new EmpresasRepository(em);
-		
-		//Buscando as informacoes no banco 
+
+		// Buscando as informacoes no banco
 		List<RamoAtividade> listaRamoAtividades = ramoRepository.pesquisa("");
 		List<Empresa> listaEmpresas = empresasRepository.pesquisar("");
 		System.out.println(listaEmpresas);
 		System.out.println(listaRamoAtividades);
-		
-		
-		//Criando uma empresa
+
+		// Criando uma empresa
 		Empresa empresa1 = new Empresa();
 		empresa1.setNomeFantasia("Lucas Henrique");
 		empresa1.setCnpj("41.952.555/0001-57");
@@ -41,16 +40,16 @@ public class camadaPersistencia {
 		empresa1.setTipo(TipoEmpresa.MEI);
 		empresa1.setDataFundacao(new Date());
 		empresa1.setRamoAtividade(listaRamoAtividades.get(0));
-		
-		//Salvando a empresa
+
+		// Salvando a empresa
 		empresasRepository.guardar(empresa1);
-		
+
 		em.getTransaction().commit();
-		
-		//Verificando se a insercao funcionou
+
+		// Verificando se a insercao funcionou
 		List<Empresa> listaDeEmpresa2 = empresasRepository.pesquisar("");
 		System.out.println(listaDeEmpresa2);
-		
+
 		em.close();
 		emf.close();
 	}

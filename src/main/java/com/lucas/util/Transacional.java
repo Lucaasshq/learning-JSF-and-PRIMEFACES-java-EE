@@ -8,10 +8,11 @@ import java.lang.annotation.Target;
 import javax.interceptor.InterceptorBinding;
 
 //Define que a anotação pode ser aplicada em métodos e classes.
-@Target({ ElementType.METHOD, ElementType.TYPE}) 
+@Target({ ElementType.METHOD, ElementType.TYPE })
 //Define que a anotação estará disponível em tempo de execução.
-@Retention(RetentionPolicy.RUNTIME) 
+@Retention(RetentionPolicy.RUNTIME)
 //Indica que esta anotação será usada para interceptar chamadas.
-@InterceptorBinding 
+@InterceptorBinding
 public @interface Transacional {
+
 }

@@ -14,34 +14,35 @@ import javax.persistence.EntityTransaction;
 @Priority(Interceptor.Priority.APPLICATION) // Define a prioridade de execução do interceptor.
 public class TransacionalInterceptor implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Inject // Injeta a dependência do EntityManager para manipular transações.
-    private EntityManager manager;
+	@Inject // Injeta a dependência do EntityManager para manipular transações.
+	private EntityManager manager;
 
-    @AroundInvoke // Define que este método será executado antes e depois de um método anotado com @Transacional.
-    public Object invoke(InvocationContext context) throws Exception {
-        EntityTransaction trx = manager.getTransaction(); // Obtém a transação do EntityManager.
-        boolean criador = false; // Flag para identificar se o interceptor criou a transação.
+	@AroundInvoke // Define que este método será executado antes e depois de um método anotado com
+					// @Transacional.
+	public Object invoke(InvocationContext context) throws Exception {
+		EntityTransaction trx = manager.getTransaction(); // Obtém a transação do EntityManager.
+		boolean criador = false; // Flag para identificar se o interceptor criou a transação.
 
-        try {
-            if (!trx.isActive()) { // Verifica se a transação está ativa.
-                trx.begin(); // Inicia uma nova transação.
-                trx.rollback(); // Desfaz qualquer transação anterior.
-                
-                trx.begin(); // Inicia uma nova transação limpa.
-                criador = true; // Marca que o interceptor iniciou a transação.
-            }
-            return context.proceed(); // Executa o método interceptado.
-        } catch (Exception e) {
-            if (trx != null && criador) { // Verifica se a transação foi criada pelo interceptor.
-                trx.rollback(); // Desfaz a transação em caso de erro.
-            }
-            throw e; // Relança a exceção.
-        } finally {
-            if (trx != null && trx.isActive() && criador) { // Verifica se a transação ainda está ativa.
-                trx.commit(); // Confirma a transação ao final do método.
-            }
-        }
-    }
+		try {
+			if (!trx.isActive()) { // Verifica se a transação está ativa.
+				trx.begin(); // Inicia uma nova transação.
+				trx.rollback(); // Desfaz qualquer transação anterior.
+
+				trx.begin(); // Inicia uma nova transação limpa.
+				criador = true; // Marca que o interceptor iniciou a transação.
+			}
+			return context.proceed(); // Executa o método interceptado.
+		} catch (Exception e) {
+			if (trx != null && criador) { // Verifica se a transação foi criada pelo interceptor.
+				trx.rollback(); // Desfaz a transação em caso de erro.
+			}
+			throw e; // Relança a exceção.
+		} finally {
+			if (trx != null && trx.isActive() && criador) { // Verifica se a transação ainda está ativa.
+				trx.commit(); // Confirma a transação ao final do método.
+			}
+		}
+	}
 }
