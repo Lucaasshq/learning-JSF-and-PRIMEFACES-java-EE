@@ -30,7 +30,7 @@ import com.lucas.model.TipoEmpresa;
 //Ótimo para páginas com formulários complexos.
 
 
-@Named
+@ManagedBean
 @ViewScoped
 public class GestaoEmpresaBean implements Serializable {
 
@@ -43,6 +43,12 @@ public class GestaoEmpresaBean implements Serializable {
 		System.out.println("Nome Fantasia:" + empresa.getNomeFantasia());
 		System.out.println("CNPJ:" + empresa.getCnpj());
 		System.out.println("Tipo Empresa:" + empresa.getTipo());
+		System.out.println("Data Fundação:" + empresa.getDataFundacao());
+		System.out.println("Faturamento:" + empresa.getFaturamento());
+	}
+	
+	public String ajuda() {
+		return "AjudaGestaoEmpresas?faces-redirect=true";
 	}
 	
 	public Empresa getEmpresa() {

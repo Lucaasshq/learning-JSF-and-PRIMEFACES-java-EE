@@ -14,16 +14,17 @@
 		<h:graphicImage library="style" name="logo.png" />
 	</header>
 
+	<h2>Ajuda</h2>
 
 	<div id="conteudo">
-		<h:form>
-			<h:panelGrid columns="2">
-				<h:outputLabel value="Número"/>
-				<h:outputText value="#{gestaoEmpresaBean.numero}"/>
 
-				<h:outputLabel />
-				<h:commandButton value="Salvar" />
-			</h:panelGrid>
+		<h:form>
+			<p>Esta é a ajuda da página de casdastro de empresas</p>
+
+			<p>
+				<h:commandLink value="Voltar" action="GestaoEmpresa?faces-redirect=true"/>
+			</p>
+
 		</h:form>
 	</div>
 

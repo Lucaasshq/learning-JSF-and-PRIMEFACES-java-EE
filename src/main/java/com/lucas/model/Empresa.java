@@ -1,6 +1,7 @@
 package com.lucas.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
 
@@ -48,10 +49,21 @@ public class Empresa implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private TipoEmpresa tipo;
 	
+	@Column(precision = 10, scale = 2)
+	private BigDecimal faturamento;
+	
 	
 	
 	
 
+
+	public BigDecimal getFaturamento() {
+		return faturamento;
+	}
+
+	public void setFaturamento(BigDecimal faturamento) {
+		this.faturamento = faturamento;
+	}
 
 	public TipoEmpresa getTipo() {
 		return tipo;
