@@ -9,16 +9,12 @@ public enum TipoEmpresa {
 	
 	private String descricao;
 	
-	private TipoEmpresa(String descricao) {
+	TipoEmpresa(String descricao) {
 		this.descricao = descricao;
 	}
 
 	public String getDescricao() {
 		return descricao;
 	}
-	
-	
-
-	
 
 }
