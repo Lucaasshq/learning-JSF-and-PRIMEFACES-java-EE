@@ -1,16 +1,14 @@
 package com.lucas.controller;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.enterprise.inject.New;
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.lucas.model.Empresa;
-import com.lucas.model.TipoEmpresa;
+import com.lucas.repository.EmpresasRepository;
 
 //@RequestScoped:
 
@@ -30,33 +28,28 @@ import com.lucas.model.TipoEmpresa;
 //Ótimo para páginas com formulários complexos.
 
 
-@ManagedBean
-@ViewScoped
+@Named
+@javax.faces.view.ViewScoped
 public class GestaoEmpresaBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	private Empresa empresa = new Empresa();
+	@Inject
+	private EmpresasRepository empresasRepository;
 	
-	public void salvar() {
-		System.out.println("Razão Social:" + empresa.getRazaoSocial());
-		System.out.println("Nome Fantasia:" + empresa.getNomeFantasia());
-		System.out.println("CNPJ:" + empresa.getCnpj());
-		System.out.println("Tipo Empresa:" + empresa.getTipo());
-		System.out.println("Data Fundação:" + empresa.getDataFundacao());
-		System.out.println("Faturamento:" + empresa.getFaturamento());
+
+	private List<Empresa> listarEmpresas;
+	
+	public void todasEmpresas() {
+		listarEmpresas = empresasRepository.todas();
+		String jsfVersion = javax.faces.context.FacesContext.class.getPackage().getImplementationVersion();
+		System.out.println("JSF Version: " + jsfVersion);
+
 	}
 	
-	public String ajuda() {
-		return "AjudaGestaoEmpresas?faces-redirect=true";
+	public List<Empresa> getListaEmpresas() {
+		return listarEmpresas;
 	}
-	
-	public Empresa getEmpresa() {
-		return empresa;
-	}
-	
-	public TipoEmpresa[] getTiposEmpresa() {
-		return TipoEmpresa.values();
-	}
+
 
 }
