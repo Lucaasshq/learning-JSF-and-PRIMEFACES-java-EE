@@ -19,6 +19,31 @@
 
 
 		<h:form>
+			<p:toolbar>
+				<f:facet name="left">
+
+					<p:inputText placeholder="Digite um termo para pesquisa.." size="30" />
+					<p:commandButton value="pesquisar" icon="pi pi-search" />
+
+
+
+					<p:commandButton value="Nova" icon="pi pi-folder-open" />
+
+
+
+					<p:commandButton title="Editar" icon="pi pi-file-edit" />
+
+					<p:commandButton title="Excluir" icon="pi pi-delete-left" />
+
+
+
+					<p:commandButton title="Exportar" icon="pi pi-file-excel" />
+
+				</f:facet>
+			</p:toolbar>
+
+			<p:spacer height="20px" />
+
 			<p:dataTable value="#{gestaoEmpresaBean.listaEmpresas}" var="empresa"
 				emptyMessage="Nenhuma informaçao a ser exibida" paginator="true"
 				rows="10" paginatorPosition="bottom">

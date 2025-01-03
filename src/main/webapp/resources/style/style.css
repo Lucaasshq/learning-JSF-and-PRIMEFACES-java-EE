@@ -35,3 +35,9 @@ h1 {
 	margin: 0px;
 	margin-bottom: 10px
 }
+
+.toolbar-spacing {
+    display: flex;
+    gap: 10px; /* Define o espaço entre os ícones */
+    align-items: center; /* Alinha os itens verticalmente */
+}
