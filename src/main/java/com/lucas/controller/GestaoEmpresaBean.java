@@ -42,8 +42,6 @@ public class GestaoEmpresaBean implements Serializable {
 	
 	public void todasEmpresas() {
 		listarEmpresas = empresasRepository.todas();
-		String jsfVersion = javax.faces.context.FacesContext.class.getPackage().getImplementationVersion();
-		System.out.println("JSF Version: " + jsfVersion);
 
 	}
 	
