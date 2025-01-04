@@ -3,12 +3,14 @@ package com.lucas.controller;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.faces.bean.ViewScoped;
+
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.lucas.model.Empresa;
 import com.lucas.repository.EmpresasRepository;
+import com.lucas.util.FacesMessages;
 
 //@RequestScoped:
 
@@ -27,27 +29,45 @@ import com.lucas.repository.EmpresasRepository;
 //Mantém o bean vivo enquanto o usuário estiver interagindo com a mesma página JSF.
 //Ótimo para páginas com formulários complexos.
 
-
 @Named
-@javax.faces.view.ViewScoped
+@ViewScoped
 public class GestaoEmpresaBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Inject
 	private EmpresasRepository empresasRepository;
-	
+	@Inject
+	private FacesMessages messages;
 
 	private List<Empresa> listarEmpresas;
-	
+
+	private String termoPesquisa;
+
+	public void pesquisar() {
+		listarEmpresas = empresasRepository.pesquisar(termoPesquisa);
+		if (listarEmpresas.isEmpty()) {
+			messages.info("Sua pesquisa não retornou registros!");
+
+		}
+		System.out.println(listarEmpresas.toString());
+	}
+
 	public void todasEmpresas() {
 		listarEmpresas = empresasRepository.todas();
 
 	}
-	
+
 	public List<Empresa> getListaEmpresas() {
 		return listarEmpresas;
 	}
 
+	public String getTermoPesquisa() {
+		return termoPesquisa;
+	}
+
+	public void setTermoPesquisa(String termoPesquisa) {
+		this.termoPesquisa = termoPesquisa;
+	}
 
 }

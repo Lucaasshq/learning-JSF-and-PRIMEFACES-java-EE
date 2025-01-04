@@ -19,27 +19,30 @@
 
 
 		<h:form>
+		
+			<p:messages id="mensagem-info"/>
 			<p:toolbar>
 				<f:facet name="left">
 
 					<p:inputText placeholder="Digite um termo para pesquisa.."
-						size="30" style="margin-right: 5px;" />
+						size="30" value="#{gestaoEmpresaBean.termoPesquisa}"
+						style="margin-right: 5px;" />
 					<div class="toolbar-1">
-						<p:commandButton type="button" value="pesquisar"
-							icon="pi pi-search" />
+						<p:commandButton value="pesquisar"
+							actionListener="#{gestaoEmpresaBean.pesquisar}"
+							update="empresasDataTable, mensagem-info"  icon="pi pi-search" />
 
 						<SPAN class="pi pi-bars" style="margin-right: 5px;" />
 
-						<p:commandButton type="button" value="Nova"
-							icon="pi pi-folder-open"
+						<p:commandButton value="Nova" icon="pi pi-folder-open"
 							onclick="PF('empresaDialogWidgetVar').show()"
 							style="margin-right: 5px;" />
-						<p:commandButton type="button" title="Editar"
-							icon="pi pi-file-edit" style="margin-right: 5px;" />
-						<p:commandButton type="button" title="Excluir"
-							icon="pi pi-delete-left" style="margin-right: 5px;" />
-						<p:commandButton type="button" title="Exportar"
-							icon="pi pi-file-excel" style="margin-right: 5px;" />
+						<p:commandButton title="Editar" icon="pi pi-file-edit"
+							style="margin-right: 5px;" />
+						<p:commandButton title="Excluir" icon="pi pi-delete-left"
+							style="margin-right: 5px;" />
+						<p:commandButton title="Exportar" icon="pi pi-file-excel"
+							style="margin-right: 5px;" />
 					</div>
 				</f:facet>
 			</p:toolbar>
@@ -47,7 +50,8 @@
 
 			<p:spacer height="20px" />
 
-			<p:dataTable value="#{gestaoEmpresaBean.listaEmpresas}" var="empresa"
+			<p:dataTable id="empresasDataTable"
+				value="#{gestaoEmpresaBean.listaEmpresas}" var="empresa"
 				emptyMessage="Nenhuma informaçao a ser exibida" paginator="true"
 				rows="10" paginatorPosition="bottom">
 				<p:column headerText="Razão social" sortBy="#{empresa.razaoSocial}">

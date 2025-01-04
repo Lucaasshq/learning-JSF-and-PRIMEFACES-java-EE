@@ -7,7 +7,6 @@ import javax.faces.bean.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import com.lucas.model.Empresa;
@@ -31,9 +30,9 @@ public class EmpresasRepository implements Serializable {
 	}
 
 	public List<Empresa> pesquisar(String nome) {
-		TypedQuery<Empresa> query = manager.createQuery("from Empresa where nomeFantasia like :nomeFantasia",
+		TypedQuery<Empresa> query = manager.createQuery("from Empresa where razaoSocial like :razaoSocial",
 				Empresa.class);
-		query.setParameter("nomeFantasia", nome + "%");
+		query.setParameter("razaoSocial", nome + "%");
 
 		return query.getResultList();
 	}
@@ -51,7 +50,6 @@ public class EmpresasRepository implements Serializable {
 
 	public List<Empresa> todas() {
 		List<Empresa> emp = manager.createQuery("from Empresa", Empresa.class).getResultList();
-		 System.out.println("Empresas encontradas: " + emp.size());
 		 return emp;
 	}
 
