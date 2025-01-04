@@ -8,7 +8,6 @@ body {
 }
 
 header {
-	
 	padding: 10px;
 	margin-bottom: 20px;
 	width: 100%;
@@ -36,8 +35,8 @@ h1 {
 	margin-bottom: 10px
 }
 
-.toolbar-spacing {
-    display: flex;
-    gap: 10px; /* Define o espaço entre os ícones */
-    align-items: center; /* Alinha os itens verticalmente */
+.btn-toolbar {
+    margin-right: 15px;
 }
+
+
