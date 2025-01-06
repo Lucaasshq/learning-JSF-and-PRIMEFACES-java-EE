@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.lucas.model.Empresa;
+import com.lucas.model.TipoEmpresa;
 import com.lucas.repository.EmpresasRepository;
 import com.lucas.util.FacesMessages;
 
@@ -68,6 +69,11 @@ public class GestaoEmpresaBean implements Serializable {
 
 	public void setTermoPesquisa(String termoPesquisa) {
 		this.termoPesquisa = termoPesquisa;
+	}
+	
+	public TipoEmpresa[] getTiposEmpresa() {
+		return TipoEmpresa.values();
+		
 	}
 
 }
