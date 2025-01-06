@@ -39,5 +39,7 @@ public class RamoAtividadesRepository implements Serializable {
 		TypedQuery<RamoAtividade> query = manager.createQuery(criterialQuery);
 		return query.getResultList();
 	}
+	
+
 
 }

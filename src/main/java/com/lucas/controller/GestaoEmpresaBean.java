@@ -9,8 +9,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.lucas.model.Empresa;
+import com.lucas.model.RamoAtividade;
 import com.lucas.model.TipoEmpresa;
 import com.lucas.repository.EmpresasRepository;
+import com.lucas.repository.RamoAtividadesRepository;
 import com.lucas.util.FacesMessages;
 
 //@RequestScoped:
@@ -35,11 +37,17 @@ import com.lucas.util.FacesMessages;
 public class GestaoEmpresaBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+	
+	
 	@Inject
 	private EmpresasRepository empresasRepository;
 	@Inject
 	private FacesMessages messages;
+	
+	@Inject
+	private RamoAtividadesRepository ramoAtividadeRepository;
+	
+	private RamoAtividadeConverter ramoAtividadeConverter;
 
 	private List<Empresa> listarEmpresas;
 
@@ -58,6 +66,14 @@ public class GestaoEmpresaBean implements Serializable {
 		listarEmpresas = empresasRepository.todas();
 
 	}
+	
+	public List<RamoAtividade> completarRamoAtividade(String termo) {
+		List<RamoAtividade> listaRamoAtividade = ramoAtividadeRepository.pesquisa(termo);
+		
+		ramoAtividadeConverter = new RamoAtividadeConverter(listaRamoAtividade);
+		
+		return listaRamoAtividade;
+	}
 
 	public List<Empresa> getListaEmpresas() {
 		return listarEmpresas;
@@ -74,6 +90,14 @@ public class GestaoEmpresaBean implements Serializable {
 	public TipoEmpresa[] getTiposEmpresa() {
 		return TipoEmpresa.values();
 		
+	}
+
+	public RamoAtividadeConverter getRamoAtividadeConverter() {
+		return ramoAtividadeConverter;
+	}
+
+	public void setRamoAtividadeConverter(RamoAtividadeConverter ramoAtividadeConverter) {
+		this.ramoAtividadeConverter = ramoAtividadeConverter;
 	}
 
 }
