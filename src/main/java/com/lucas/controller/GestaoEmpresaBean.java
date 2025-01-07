@@ -3,7 +3,6 @@ package com.lucas.controller;
 import java.io.Serializable;
 import java.util.List;
 
-
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -13,6 +12,7 @@ import com.lucas.model.RamoAtividade;
 import com.lucas.model.TipoEmpresa;
 import com.lucas.repository.EmpresasRepository;
 import com.lucas.repository.RamoAtividadesRepository;
+import com.lucas.service.CadastroEmpresaService;
 import com.lucas.util.FacesMessages;
 
 //@RequestScoped:
@@ -37,21 +37,41 @@ import com.lucas.util.FacesMessages;
 public class GestaoEmpresaBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-	
+
 	@Inject
 	private EmpresasRepository empresasRepository;
+
 	@Inject
 	private FacesMessages messages;
-	
+
+	@Inject
+	private CadastroEmpresaService cadastroEmpresaService;
+
 	@Inject
 	private RamoAtividadesRepository ramoAtividadeRepository;
-	
+
 	private RamoAtividadeConverter ramoAtividadeConverter;
 
 	private List<Empresa> listarEmpresas;
 
+	private Empresa empresa;
+
 	private String termoPesquisa;
+
+	public void prepararNovaEmpresa() {
+		empresa = new Empresa();
+	}
+
+	public void salvarEmpresa() {
+		cadastroEmpresaService.salvar(empresa);
+		System.out.println("Salvo: " + empresa.getNomeFantasia());
+		
+		if(jaHouvePesquisa()) {
+			pesquisar();
+		}
+		messages.info("Empresa cadastrada com sucesso!");
+		
+	}
 
 	public void pesquisar() {
 		listarEmpresas = empresasRepository.pesquisar(termoPesquisa);
@@ -66,13 +86,17 @@ public class GestaoEmpresaBean implements Serializable {
 		listarEmpresas = empresasRepository.todas();
 
 	}
-	
+
 	public List<RamoAtividade> completarRamoAtividade(String termo) {
 		List<RamoAtividade> listaRamoAtividade = ramoAtividadeRepository.pesquisa(termo);
-		
+
 		ramoAtividadeConverter = new RamoAtividadeConverter(listaRamoAtividade);
-		
+
 		return listaRamoAtividade;
+	}
+	
+	private boolean jaHouvePesquisa() {
+		return termoPesquisa != null && !"".equals(termoPesquisa);
 	}
 
 	public List<Empresa> getListaEmpresas() {
@@ -86,10 +110,10 @@ public class GestaoEmpresaBean implements Serializable {
 	public void setTermoPesquisa(String termoPesquisa) {
 		this.termoPesquisa = termoPesquisa;
 	}
-	
+
 	public TipoEmpresa[] getTiposEmpresa() {
 		return TipoEmpresa.values();
-		
+
 	}
 
 	public RamoAtividadeConverter getRamoAtividadeConverter() {
@@ -98,6 +122,14 @@ public class GestaoEmpresaBean implements Serializable {
 
 	public void setRamoAtividadeConverter(RamoAtividadeConverter ramoAtividadeConverter) {
 		this.ramoAtividadeConverter = ramoAtividadeConverter;
+	}
+
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
 	}
 
 }
