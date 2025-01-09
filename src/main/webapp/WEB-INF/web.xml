@@ -33,8 +33,9 @@
 
 	<!-- Listener responsavel por inicializar o CDI com o Weld -->
 	<listener>
-		<listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
-	</listener>
+    <listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
+</listener>
+
 
 	<!-- Configuracao do Faces Servlet para processar requisicoes JSF -->
 	<servlet>

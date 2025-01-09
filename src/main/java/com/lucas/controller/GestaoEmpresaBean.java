@@ -69,7 +69,7 @@ public class GestaoEmpresaBean implements Serializable {
 		if(jaHouvePesquisa()) {
 			pesquisar();
 		}
-		messages.info("Empresa cadastrada com sucesso!");
+		messages.info("Empresa salva com sucesso!");
 		
 	}
 
