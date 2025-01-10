@@ -3,7 +3,6 @@ package com.lucas.repository;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.faces.bean.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -12,7 +11,7 @@ import javax.persistence.TypedQuery;
 import com.lucas.model.Empresa;
 
 @Named
-@RequestScoped
+@javax.enterprise.context.RequestScoped
 public class EmpresasRepository implements Serializable {
 
 	private static final long serialVersionUID = 1L;

@@ -64,13 +64,12 @@ public class GestaoEmpresaBean implements Serializable {
 
 	public void salvarEmpresa() {
 		cadastroEmpresaService.salvar(empresa);
-		System.out.println("Salvo: " + empresa.getNomeFantasia());
-		
-		if(jaHouvePesquisa()) {
+
+		if (jaHouvePesquisa()) {
 			pesquisar();
 		}
 		messages.info("Empresa salva com sucesso!");
-		
+
 	}
 
 	public void pesquisar() {
@@ -94,7 +93,7 @@ public class GestaoEmpresaBean implements Serializable {
 
 		return listaRamoAtividade;
 	}
-	
+
 	private boolean jaHouvePesquisa() {
 		return termoPesquisa != null && !"".equals(termoPesquisa);
 	}
