@@ -18,7 +18,9 @@
 
 		<h:form id="frm">
 			<p:messages id="mensagem-info" />
-			<p:toolbar>
+
+
+			<p:toolbar id="toolbar">
 				<f:facet name="left">
 
 					<p:inputText id="termoPesquisa"
@@ -36,14 +38,18 @@
 						<p:commandButton value="Nova" icon="pi pi-folder-open"
 							actionListener="#{gestaoEmpresaBean.prepararNovaEmpresa}"
 							oncomplete="PF('empresaDialogWidgetVar').show()"
-							update="empresaDialog" process="@this" style="margin-right: 5px;" />
+							update="empresaDialog" process="@this" style="margin-right: 5px;">
+							<p:resetInput target="empresaDialog"></p:resetInput>
+						</p:commandButton>
 
 
 						<p:commandButton title="Editar" icon="pi pi-file-edit"
+							disabled="#{not gestaoEmpresaBean.empresaSelecionada}"
 							style="margin-right: 5px;" />
 
 
 						<p:commandButton title="Excluir" icon="pi pi-delete-left"
+							disabled="#{not gestaoEmpresaBean.empresaSelecionada}"
 							style="margin-right: 5px;" />
 
 
@@ -59,7 +65,13 @@
 			<p:dataTable id="empresasDataTable"
 				value="#{gestaoEmpresaBean.listaEmpresas}" var="empresa"
 				emptyMessage="Nenhuma informaçao a ser exibida" paginator="true"
-				rows="10" paginatorPosition="bottom">
+				rows="10" paginatorPosition="bottom" selectionMode="single"
+				selection="#{gestaoEmpresaBean.empresa}" rowKey="#{empresas.id}">
+				
+				<p:ajax event="rowSelect" update="frm:toolbar"/>
+				<p:ajax event="rowUnselect" update="frm:toolbar"/>
+
+
 				<p:column headerText="Razão social" sortBy="#{empresa.razaoSocial}">
 					<h:outputText value="#{empresa.razaoSocial}" />
 				</p:column>
@@ -82,6 +94,10 @@
 				widgetVar="empresaDialogWidgetVar" modal="true" resizable="false"
 				closeOnEscape="true">
 				<p:messages id="empresaMessages" />
+
+				<p:defaultCommand target="salvarCommandButton" scope="empresaDialog" />
+
+
 				<h:panelGrid id="empresaPanelGrid" columns="2"
 					rendered="#{gestaoEmpresaBean.empresa ne null}">
 					<p:outputLabel value="Razão social" for="razaoSocial" />
@@ -118,7 +134,7 @@
 						value="#{gestaoEmpresaBean.empresa.ramoAtividade}" />
 
 					<h:outputLabel />
-					<p:commandButton value="Salvar"
+					<p:commandButton id="salvarCommandButton" value="Salvar"
 						actionListener="#{gestaoEmpresaBean.salvarEmpresa}"
 						update="empresaPanelGrid empresaMessages"
 						oncomplete="if(!args.validationFailed) PF('empresaDialogWidgetVar').hide()"
