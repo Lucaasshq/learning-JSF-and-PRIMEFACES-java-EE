@@ -1,11 +1,16 @@
 package com.lucas.controller;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import org.primefaces.PrimeFaces;
 
 import com.lucas.model.Empresa;
 import com.lucas.model.RamoAtividade;
@@ -67,8 +72,13 @@ public class GestaoEmpresaBean implements Serializable {
 
 		if (jaHouvePesquisa()) {
 			pesquisar();
+		} else {
+			todasEmpresas();
 		}
-		messages.info("Empresa salva com sucesso!");
+
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Empresa salva com sucesso", null));
+		PrimeFaces.current().ajax().update(Arrays.asList("frm:empresasDataTable", "frm:mensagem-info"));
 
 	}
 
