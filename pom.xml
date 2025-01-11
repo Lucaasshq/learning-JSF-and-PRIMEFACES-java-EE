@@ -52,6 +52,15 @@
 			<scope>compile</scope>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>5.2.3</version>
+			<scope>compile</scope>
+		</dependency>
+
+
 		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
 		<!-- A API Servlet fornece a interface para a criação de servlets Java, 
        que são componentes responsáveis por processar requisições HTTP e gerar 

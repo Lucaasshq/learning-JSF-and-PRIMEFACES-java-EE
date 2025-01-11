@@ -17,8 +17,8 @@
 		</f:metadata>
 
 		<h:form id="frm">
-			<p:messages id="mensagem-info" />
 
+			<p:messages id="mensagem-info" />
 
 			<p:toolbar id="toolbar">
 				<f:facet name="left">
@@ -45,16 +45,29 @@
 
 						<p:commandButton title="Editar" icon="pi pi-file-edit"
 							disabled="#{not gestaoEmpresaBean.empresaSelecionada}"
-							style="margin-right: 5px;" />
+							actionListener="#{gestaoEmpresaBean.prepararEdicao}"
+							oncomplete="PF('empresaDialogWidgetVar').show()"
+							update="empresaDialog" process="@this" style="margin-right: 5px;">
+							<p:resetInput target="empresaDialog" />
+						</p:commandButton>
 
 
 						<p:commandButton title="Excluir" icon="pi pi-delete-left"
 							disabled="#{not gestaoEmpresaBean.empresaSelecionada}"
-							style="margin-right: 5px;" />
+							actionListener="#{gestaoEmpresaBean.excluirEmpresa}"
+							update="mensagem-info empresasDataTable toolbar" process="@this"
+							style="margin-right: 5px;">
+
+
+							<p:confirm icon="pi pi-info-circle" header="Confirmar Exclusão"
+								message="Posso Excluir a empresa?" />
+						</p:commandButton>
 
 
 						<p:commandButton title="Exportar" icon="pi pi-file-excel"
-							style="margin-right: 5px;" />
+							style="margin-right: 5px;">
+							<p:dataExporter fileName="Empresas" type="xls" target="empresasDataTable"></p:dataExporter>
+						</p:commandButton>
 					</div>
 				</f:facet>
 			</p:toolbar>
@@ -67,9 +80,9 @@
 				emptyMessage="Nenhuma informaçao a ser exibida" paginator="true"
 				rows="10" paginatorPosition="bottom" selectionMode="single"
 				selection="#{gestaoEmpresaBean.empresa}" rowKey="#{empresa.id}">
-				
-				<p:ajax event="rowSelect" update="frm:toolbar"/>
-				<p:ajax event="rowUnselect" update="frm:toolbar"/>
+
+				<p:ajax event="rowSelect" update="frm:toolbar" />
+				<p:ajax event="rowUnselect" update="frm:toolbar" />
 
 
 				<p:column headerText="Razão social" sortBy="#{empresa.razaoSocial}">

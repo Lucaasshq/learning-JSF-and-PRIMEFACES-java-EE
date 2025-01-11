@@ -62,8 +62,6 @@ public class GestaoEmpresaBean implements Serializable {
 	private Empresa empresa;
 
 	private String termoPesquisa;
-	
-	
 
 	public void prepararNovaEmpresa() {
 		empresa = new Empresa();
@@ -72,24 +70,29 @@ public class GestaoEmpresaBean implements Serializable {
 	public void salvarEmpresa() {
 		cadastroEmpresaService.salvar(empresa);
 
-		if (jaHouvePesquisa()) {
-			pesquisar();
-		} else {
-			todasEmpresas();
-		}
+		atualizarRegistros();
 
 		FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage(FacesMessage.SEVERITY_INFO, "Empresa salva com sucesso", null));
+
 		PrimeFaces.current().ajax().update(Arrays.asList("frm:empresasDataTable", "frm:mensagem-info"));
 
 	}
-	
-	public void editarEmpresa() {
-		System.out.println("Salvar empresa: ");
+
+	public void prepararEdicao() {
+		ramoAtividadeConverter = new RamoAtividadeConverter(Arrays.asList(empresa.getRamoAtividade()));
 	}
-	
+
 	public void excluirEmpresa() {
-		System.out.println("Excluir empresa:");
+		cadastroEmpresaService.excluir(empresa);
+
+		empresa = null;
+
+		atualizarRegistros();
+
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Empresa excluida com Sucesso", null));
+
 	}
 
 	public void pesquisar() {
@@ -113,9 +116,19 @@ public class GestaoEmpresaBean implements Serializable {
 
 		return listaRamoAtividade;
 	}
-	
+
 	public boolean isEmpresaSelecionada() {
 		return empresa != null;
+	}
+
+	private void atualizarRegistros() {
+		
+		if (jaHouvePesquisa()) {
+			pesquisar();
+		} else {
+			todasEmpresas();
+		}
+
 	}
 
 	private boolean jaHouvePesquisa() {
@@ -154,6 +167,5 @@ public class GestaoEmpresaBean implements Serializable {
 	public void setEmpresa(Empresa empresa) {
 		this.empresa = empresa;
 	}
-
 
 }
