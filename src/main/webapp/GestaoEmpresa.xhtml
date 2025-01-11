@@ -66,7 +66,7 @@
 				value="#{gestaoEmpresaBean.listaEmpresas}" var="empresa"
 				emptyMessage="Nenhuma informaçao a ser exibida" paginator="true"
 				rows="10" paginatorPosition="bottom" selectionMode="single"
-				selection="#{gestaoEmpresaBean.empresa}" rowKey="#{empresas.id}">
+				selection="#{gestaoEmpresaBean.empresa}" rowKey="#{empresa.id}">
 				
 				<p:ajax event="rowSelect" update="frm:toolbar"/>
 				<p:ajax event="rowUnselect" update="frm:toolbar"/>
